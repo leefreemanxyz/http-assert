@@ -1,5 +1,5 @@
 var createError = require('http-errors')
-var eql = require('deep-equal')
+var { isDeepStrictEqual } = require('node:util')
 
 module.exports = assert
 
@@ -33,9 +33,9 @@ assert.notStrictEqual = function (a, b, status, msg, opts) {
 }
 
 assert.deepEqual = function (a, b, status, msg, opts) {
-  assert(eql(a, b), status, msg, opts)
+  assert(isDeepStrictEqual(a, b), status, msg, opts)
 }
 
 assert.notDeepEqual = function (a, b, status, msg, opts) {
-  assert(!eql(a, b), status, msg, opts)
+  assert(!isDeepStrictEqual(a, b), status, msg, opts)
 }
